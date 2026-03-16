@@ -1,0 +1,24 @@
+Abstract
+We report and consolidate a compact “thermodynamic neuron” architecture, L.I.A.R. (Logical
+Ising-Attractor with Relational-Attention), designed as a single-layer micro-solver for Boolean 
+logic. L.I.A.R. unifies (i) a learnable Weber–Fechner/Box–Cox perception transform, (ii) second-
+order bilinear interactions (sigma–pi / higher-order terms) with an optional low-rank factorization, 
+and (iii) a deterministic Ising attractor iteration. We further introduce a thermodynamic phase-
+wave mechanism and benchmark L.I.A.R. on the N-bit parity task as a challenging single-layer 
+stress test. We provide a reproducible experimental suite covering XOR, the half-adder, a 4D 
+ALU routing task, exhaustive Boolean gates, and noise robustness. We also document failure 
+modes observed under certain optimization settings (seed sensitivity, late-training collapse) and
+demonstrate that these instabilities can be eliminated by stabilizing the demo training protocols 
+without changing the core neuron.
+
+1 Introduction
+Boolean reasoning and routing tasks such as XOR, half-adders, and small ALU-style multiplexers 
+are historically used as minimal proofs of relational nonlinearity. Classical single-layer perceptrons 
+fail on XOR due to linear separability. Higher-order sigma–pi models can represent XOR in one unit 
+but typically suffer from parameter explosion as input dimension grows [2]. Energy-based models
+(Boltzmann machines, Hopfield networks) provide a compelling “minimum-energy” interpretation of
+constraint satisfaction [4, 3] but are often associated with slow stochastic inference.
+L.I.A.R. is engineered as a compact compromise: a single differentiable layer that (1) transforms
+inputs by a learnable power-law perception (Box–Cox family) [1], (2) accumulates linear and bilinear 
+“field energy”, then (3) commits to a discrete-like decision via a short deterministic Ising-style
+attractor loop. This paper consolidates the current implementation and its empirical behavior.
